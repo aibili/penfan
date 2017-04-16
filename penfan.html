@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <title>喷饭网</title>
+   
+<style>
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,video
+{margin:0;padding:0}
+
+ul{
+	list-style: none;
+}
+
+.clearfix:before, .clearfix:after{
+	content: "";
+	display: table;
+}
+
+.main{
+	height: 500px;
+	background-image: url(videoandpic/backgroundpic.jpg);
+	margin: 50px auto;
+	position: relative;
+}
+
+
+.side-style{
+	width: 200px;
+	height: 500px;
+	position: absolute;
+	top: 50%;
+	margin-top: -250px;
+}
+
+
+.left-side{
+	left: 0;
+}
+
+.right-side{
+	right: 0;
+}
+
+.center{
+	width: 700px;
+	height: 100%;
+	margin: 0 auto;
+	padding-top: 80px;
+	box-sizing: border-box;
+	position: relative;
+}
+   
+.left-video-small li{
+	width: 150px;
+	height: 150px;
+	border: 1px solid #ccc;
+	transition-property: all;
+	transition-duration: 1s;
+	cursor: pointer;
+	background-color: black;
+	overflow: hidden;
+}
+
+.left-video-small li:hover{
+	
+	width: 180px;
+	height: 180px;
+	z-index: 10;
+	
+}
+
+.left-video-small li:hover img{
+  opacity:0.5;
+}
+
+
+
+.left-video-small li:nth-child(1){
+	  position: absolute;
+	  top: 30px;
+	  left: 72px;
+}
+
+.left-video-small li:nth-child(2){
+	  position: absolute;
+	  top: 156px;
+	  left: 0px;
+}
+
+.left-video-small li:nth-child(3){
+	  position: absolute;
+	  bottom: 50px;
+	  right: -10px;
+}
+
+.right-video-small li{
+	width: 150px;
+	height: 150px;
+	border: 1px solid #ccc;
+	transition-property: all;
+	transition-duration: 1s;
+	cursor: pointer;
+	background-color: black;
+	overflow: hidden;
+}
+
+.right-video-small li:hover{
+	
+	width: 180px;
+	height: 180px;
+	z-index: 10;
+	
+}
+
+.right-video-small li:hover img{	
+opacity:0.5;
+}
+
+.right-video-small li:nth-child(1){
+	  position: absolute;
+	  top: 30px;
+	  right: 20px;
+}
+
+.right-video-small li:nth-child(2){
+	  position: absolute;
+	  top: 156px;
+	  left: -30px;
+}
+
+.right-video-small li:nth-child(3){
+	  position: absolute;
+	  bottom: 50px;
+	  right: 30px;
+}
+
+.content{
+	height: 400px;
+	background-color: grey;
+	position: relative;
+}
+
+.content-top{
+	width: 500px;
+	height: 40px;
+	background-color: skyblue;
+	position: absolute;
+	top:18px;
+	left:50%;
+	margin-left: -250px;
+	color: white;
+	text-align: center;
+	line-height: 40px;
+	border-radius: 33px;
+}
+
+.videostyle{
+	width: 100%;
+	height: 100%;
+	display:none;
+}
+img{
+	width: 100%;
+	height: 100%;
+}
+
+.mask{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top:50%;
+	left:0;
+	color: white;
+	font-size: 15px;
+	text-align: center;
+	margin-top: -30px;
+	display: none;
+}
+
+.video-mask{
+	width: 100%;
+	height: 390px;
+	background-color: black;
+	opacity:0.3;
+	position: absolute;
+	top:0;
+	left:0;
+	cursor: pointer;
+	display: none;
+	z-index: 10;
+
+}
+
+
+	
+
+.mask-play{
+	width: 100px;
+	height: 100px;
+	background-color: skyblue;
+	border-radius: 50%;
+	position: absolute;
+	top:50%;
+	left:50%;
+	margin-top:-50px;
+	margin-left:-50px;
+	transition-property: all;
+	transition-duration:1s;
+	display: none;
+	text-align: center;
+	text-indent: 0.2em;
+	line-height: 100px;
+	font-size:60px;
+	cursor: pointer;
+}
+
+
+
+   
+</style>
+<script>
+   
+   window.onload = function(){
+	   
+	   //定义获取id函数
+	   function $(id){
+		   return document.getElementById(id);
+	   }
+	   
+	   var lis = $("J_pic").children;     //左侧视频选项
+	   var lis2 = $("J_pic2").children;  //右侧视频选项
+	   var box = $("J_box");                //中心播放空间
+	   var des = $("des");                  //视频标题栏
+	   
+		   var biaoqian = document.createElement("video");     //动态创建视频标签
+		   var mengban = document.createElement("div");        //动态创建视频蒙版
+		   var btn = document.createElement("span");               //动态创建视频播放按钮
+		   biaoqian.className = "videostyle";
+		   mengban.className = "video-mask";
+		   btn.className = "mask-play";
+		   btn.innerHTML ="▷";
+		   biaoqian.controls = "controls";
+		   box.appendChild(biaoqian);  
+		   box.appendChild(mengban);
+		   box.appendChild(btn);
+		   
+		      biaoqian.src = "videoandpic/01.mp4";             //默认第一个视频呈现
+			   biaoqian.poster = "videoandpic/01.png";
+			   biaoqian.style.display = "block";
+			   mengban.style.display = "block";
+			   btn.style.display = "block";
+			   des.innerHTML = lis[0].children[1].innerHTML +"";
+	   
+   
+	   for(var i =0; i<lis.length; i++){
+		   
+		   lis[i].index = i;
+		   lis[i].onclick = function(){
+			   
+			   biaoqian.style.display = "block";
+			   mengban.style.display = "block";
+			   btn.style.display = "block";
+			   
+					   
+				if(this.index==0){	
+	
+			   biaoqian.src = "videoandpic/0"+(this.index+1)+".mp4";
+			   biaoqian.poster = "videoandpic/0"+(this.index+1)+".png";
+			   des.innerHTML = lis[this.index].children[1].innerHTML +"";
+
+				}
+				
+				else if(this.index==1){
+
+			   biaoqian.src = "videoandpic/0"+(this.index+1)+".mp4";
+			   biaoqian.poster = "videoandpic/0"+(this.index+1)+".png";
+			   des.innerHTML = lis[this.index].children[1].innerHTML +"";
+				}
+				
+			   else if(this.index==2){
+	
+			   biaoqian.src = "videoandpic/0"+(this.index+1)+".mp4";
+			   biaoqian.poster = "videoandpic/0"+(this.index+1)+".png";
+			   des.innerHTML = lis[this.index].children[1].innerHTML +"";
+				}
+			   
+		   
+		   }
+		   
+	   }
+	   
+	   	   for(var i =0; i<lis2.length; i++){
+		   
+		   lis2[i].index = i;
+		   lis2[i].onclick = function(){
+				   
+			   biaoqian.style.display = "block";
+			   mengban.style.display = "block";
+			   btn.style.display = "block";
+			   
+				if(this.index==0){	
+	
+			   biaoqian.src = "videoandpic/0"+(this.index+4)+".mp4";
+			   biaoqian.poster = "videoandpic/0"+(this.index+4)+".png";
+			   des.innerHTML = lis2[this.index].children[1].innerHTML +"";
+
+				}
+				
+				else if(this.index==1){
+
+			   biaoqian.src = "videoandpic/0"+(this.index+4)+".mp4";
+			   biaoqian.poster = "videoandpic/0"+(this.index+4)+".png";
+			   des.innerHTML = lis2[this.index].children[1].innerHTML +"";
+				
+				}
+				
+			   else if(this.index==2){
+	
+			   biaoqian.src = "videoandpic/0"+(this.index+4)+".mp4";
+			   biaoqian.poster = "videoandpic/0"+(this.index+4)+".png";
+			    des.innerHTML = lis2[this.index].children[1].innerHTML +"";
+					
+				}
+		   }
+		   
+	   }
+	   
+	   
+	   
+	   for(var i =0; i<lis.length;i++){
+		   
+		   lis[i].index = i;
+		   lis[i].onmouseover = function(){
+			   
+			lis[this.index].children[1].style.display = "block";
+			
+		   }
+		   
+		   lis[i].onmouseout = function(){
+			   
+			   lis[this.index].children[1].style.display = "none";
+		   }
+		   
+		    lis2[i].onmouseover = function(){
+			   
+			lis2[this.index].children[1].style.display = "block";
+			
+		   }
+		   lis2[i].onmouseout = function(){
+			   
+			   lis2[this.index].children[1].style.display = "none";
+		   }		   
+	   }
+	   
+	   
+	   var video = box.children[0];
+	   var mask = box.children[1];
+	   
+	  mask.onclick = function(){
+		  
+		  video.play();
+		    mask.style.display = "none";
+			btn.style.display = "none";
+		  
+	  }
+	 
+	  
+	  mask.onmouseover = function(){
+		  	  
+		  btn.style.color = "white";
+		  btn.style.opacity = 0.5;
+		  
+	  }
+	  
+	  mask.onmouseout = function(){
+		  
+		  btn.style.color = "black";
+		   btn.style.opacity = 1;
+	  }
+	   
+
+	  
+	 
+   }
+   
+
+
+</script>
+</head>
+<body>
+
+<div class="main">
+    <div class="left-side side-style">
+        <ul class="left-video-small" id="J_pic">
+               <li><img src="videoandpic/小小恋歌.png"><span class="mask">日本电影《求婚大作战》经典歌曲-小小恋歌</span>
+               </li>
+               <li><img src="videoandpic/柯基柯基.jpg"><span class="mask">柯基，你在我心目中一米八！</span>
+               </li>
+               <li><img src="videoandpic/泰国神级广告.jpg"><span class="mask">泰国神级公益广告</span>
+               </li>
+        </ul>
+    </div>
+    <div class="center">
+       <div class="content-top" id="des"></div>
+       <div class="content" id="J_box">
+            
+      </div>
+    </div>
+    <div class="right-side side-style">
+          <ul class="right-video-small" id="J_pic2">
+               <li><img src="videoandpic/搞笑电梯.jpg"><span class="mask">外国人真会玩系列</span>
+               </li>
+               <li><img src="videoandpic/搞笑单车.jpg"><span class="mask">单车男子使出平卧必杀技，瞬间反超</span>
+               </li>
+               <li><img src="videoandpic/搞笑动物.jpg"><span class="mask">拉布拉多不愧是智商前排的狗狗！看看这反应</span>
+               </li>
+          </ul>
+    </div>
+    </div>
+
+</body>
+</html>
