@@ -16,6 +16,7 @@ body{
 .navbar-itcast {
   background-color: white;
   border-color: #e7e7e7;
+  margin-bottom: 0;
 }
 .navbar-itcast .navbar-brand {
   color: #777;
@@ -115,6 +116,156 @@ fieldset[disabled] .navbar-itcast .btn-link:hover,
 fieldset[disabled] .navbar-itcast .btn-link:focus {
   color: #ccc;
 }
+
+
+
+
+.panel-czbk {
+  border-radius: 0;
+  box-shadow: 1px 1px 5px #ccc;
+  background-color: #ccc;
+  
+}
+
+.panel-czbk.active{
+
+  background-color: red;
+  color: white;
+  
+}
+
+.panel-czbk.active::before{
+	content: "\e915";
+	font-family: "bieren";
+	font-size: 50px;
+	position: absolute;
+	top: -10px;
+	left: 15px;
+  
+}
+
+.panel-czbk > .panel-heading {
+	float: right;
+	height: 150px;
+	width: 120px;
+	padding: 0;
+	text-align: center;
+	border-left: 1px dashed #999;
+	position: relative;
+}
+
+.panel-czbk > .panel-heading>p{
+	position: absolute;
+	top: 51px;
+	left: 38px;
+}
+
+.panel-czbk > .panel-heading>p>strong{
+	font-size: 30px;
+}
+
+
+
+
+.panel-czbk > .panel-body {
+	margin-right: 120px;
+	height: 150px;
+	padding: 0;
+	position: relative;
+	padding-left: 13px;
+	padding-top: 6px;
+	padding-right: 20px;
+
+}
+
+.panel-czbk > .panel-body>h3{
+	font-size: 16px;
+}
+
+.panel-czbk > .panel-body p{
+	margin-bottom: 0;
+}
+
+
+.panel-czbk > .panel-body>p{
+	height: 40px;
+}
+
+
+.panel-czbk > .panel-body>p>span{
+	font-size: 13px;
+	color: skyblue;
+}
+
+.panel-czbk > .panel-body>p>span>span{
+	font-size: 13px;
+	color: white;
+}
+
+.panel-czbk > .panel-body .span-left{
+	float: left;
+}
+
+.panel-czbk > .panel-body .span-right{
+	float: right;
+	text-align: right;
+}
+
+.panel-czbk > .panel-body::before{
+	content: "";
+	width: 16px;
+	height: 16px;
+	border-radius: 8px;
+	background-color: #f0f0f0;
+	position: absolute;
+	top: -8px;
+	right: -8px;
+
+}
+
+.panel-czbk > .panel-body::after{
+	content: "";
+	width: 16px;
+	height: 16px;
+	border-radius: 8px;
+	background-color: #f0f0f0;
+	position: absolute;
+	bottom: -8px;
+	right: -8px;
+	box-shadow: 0px 2px 1px #ccc inset;
+}
+
+.panel-czbk > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #ddd;
+}
+
+.panel-czbk > .panel-heading .toll{
+   position: absolute;
+   width: 100%;
+   top: 30px;
+   left: 0px;
+   text-align: center;
+}
+
+.panel-czbk > .panel-heading .badge {
+	 border-width: 1px;
+	 border-style: solid;
+	 border-radius: 0px;
+	 background-color: #ccc;
+	 padding: 3px;
+}
+
+.panel-czbk > .panel-heading .badge-one {
+	color: red;
+	border-color: red;
+         
+}
+
+.panel-czbk > .panel-heading .badge-two {
+    color: green;
+	border-color: green;
+}
+
 		   
 
 
@@ -122,8 +273,6 @@ fieldset[disabled] .navbar-itcast .btn-link:focus {
 头部样式
 */
 #header{
-	height: 200px;
-	background-color: skyblue;
 }
 
 #header>.topbar{
@@ -208,32 +357,144 @@ fieldset[disabled] .navbar-itcast .btn-link:focus {
 }
 
 
+/*
+轮播图样式
+*/
 
 
+#main_ad .item{
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+}
+
+@media(min-width:768px){
+	#main_ad .item{
+	height: 410px;
+}
+	
+}
+
+#main_ad .item img{
+	width: 100%;
+}
 
 
+/*
+图片特色板块
+*/
 
+#tese{
+	padding: 50px 0;
+	border-bottom: 1px solid #ccc;
+}
 
+#tese a{
+	text-decoration: none;
+	color: #ccc;
+}
 
+#tese a:hover{
+	
+	color: black;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-section{
+#tese > .container > .row >div{
 	height: 50px;
-	background-color: tomato;
+	margin-top: 20px;
+	margin-bottom: 20px;
+
 }
 
-section:nth-child(odd){
-	background-color: pink;
+
+
+.icon-e907::before{
+	content: "\e907";
+	font-size: 32px;
+	line-height: 37px;
 }
+
+
+/*
+立即预约板块
+*/
+
+
+#ljyy{
+	padding: 10px 0;
+	border-bottom: 1px solid #ccc;
+}
+
+#ljyy > .container > p{
+	font-size: 15px;
+	margin-bottom: 0;
+}
+
+#ljyy > .container > p > span{
+	color: red;
+}
+
+#ljyy > .container > .pull-left > a{
+	margin-left: 10px;
+	border-bottom: 1px dashed red;
+}
+
+#ljyy > .container > .pull-right > a{
+	color: black;
+}
+
+.icon-e906::before{
+	content: "\e906";
+	margin-right: 5px;
+}
+
+.icon-e905::before{
+	content: "\e905";
+	margin-right: 5px;
+}
+
+
+/*
+产品模块
+*/
+
+#products{
+	padding: 50px 0;
+	background-color: #f0f0f0;
+}
+
+#products > .container >.gundong {
+	overflow-x: scroll;
+}
+
+#products > .container >.gundong > .nav-tabs{
+	padding-left: 20px;
+}
+
+
+
+#products > .container >.gundong>.nav-tabs > li > a{
+	font-size: 16px;
+	color: black;
+	
+}
+
+#products > .container >.gundong> .nav-tabs > li.active > a{
+	
+	background-color: transparent;
+	border: 0;
+	border-bottom: 4px solid red;
+	
+}
+
+#products > .container >.gundong> .nav-tabs > li > a:hover{
+	border-color: transparent;
+	background-color: #ccc;
+	
+}
+
+#products > .container > .tab-content{
+	padding: 20px 0;
+}
+
 
