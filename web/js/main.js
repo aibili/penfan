@@ -67,30 +67,36 @@ $(function(){
 			  
 			  
 	//移动端的滑动事件
-	var touchst = null;
-	var touchend = null;
-	var touchoffset = 50;
+	var stX = 0;
+	var edX = 0;
+	var touchoffset = 100;
 	
 	$("#main_ad").on("touchstart",function(e){
 		
-		touchst = e.originalEvent.touches[0].clientX;
+		
+		stX = e.originalEvent.touches[0].clientX;
+		
+	
 	
 		});		  
 		
 	$("#main_ad").on("touchmove",function(e){
 		
-		touched = e.originalEvent.touches[0].clientX;
+		
+		edX = e.originalEvent.touches[0].clientX;
+		
 	
 		});	
 		
 	$("#main_ad").on("touchend",function(e){
 		
-		if(Math.abs(touched-touchst)>touchoffset){
+		if(Math.abs(edX-stX)>touchoffset){
 			
-			
-			$(this).carousel(touched-touchst>0? "prev" : "next");
-			
+			$(this).carousel(edX-stX>0? "prev" : "next");
 		}
+			
+			
+		
 	
 		});	  
 	
