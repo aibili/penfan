@@ -38,7 +38,6 @@ $(function(){
 	
      $lis.each(function(index,li){
 		 
-		
 		 width = width+li.clientWidth;
 		 });
 		 
@@ -48,17 +47,52 @@ $(function(){
 		if($(window).width()<768){
 			
 			$(".nav-tabs").css("width",width+20);
+			$(".gundong").css("overflow-x","scroll");
 		
 	}else{
 		
 		$(".nav-tabs").css("width","100%");
+		$(".gundong").css("overflow-x","");
 	}
-		
-		
 		});
 	
 	
-
+	var $newlis = $("#news .nav-stacked").children();
+	
+		  $newlis.on("click",function(){
+			  
+			  $("#showshow").text($(this).data("show"));
+			  
+			  });  
+			  
+			  
+	//移动端的滑动事件
+	var touchst = null;
+	var touchend = null;
+	var touchoffset = 50;
+	
+	$("#main_ad").on("touchstart",function(e){
+		
+		touchst = e.originalEvent.touches[0].clientX;
+	
+		});		  
+		
+	$("#main_ad").on("touchmove",function(e){
+		
+		touched = e.originalEvent.touches[0].clientX;
+	
+		});	
+		
+	$("#main_ad").on("touchend",function(e){
+		
+		if(Math.abs(touched-touchst)>touchoffset){
+			
+			
+			$(this).carousel(touched-touchst>0? "prev" : "next");
+			
+		}
+	
+		});	  
 	
 	
 	
